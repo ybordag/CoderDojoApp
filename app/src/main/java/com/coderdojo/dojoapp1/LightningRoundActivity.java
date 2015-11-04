@@ -8,7 +8,9 @@ import android.graphics.Paint;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TableLayout;
@@ -20,7 +22,9 @@ import com.coderdojo.dojoapp1.dataSources.KidsDataSource;
 public class LightningRoundActivity extends Activity{
 	private final String TAG = "LightningRoundActivity";
 
-	// OnClickListener
+	//****************************************************************************************
+	// mCheckBoxListener
+	//	Handles checkbox clicks.  Marks the Kid as having completed his talk
 	private View.OnClickListener mCheckBoxListener = new View.OnClickListener() {
 		public void onClick(View v) {
 			//mark the row grey
@@ -37,10 +41,44 @@ public class LightningRoundActivity extends Activity{
 		}
 	};
 
+	//****************************************************************************************
+	// mUpDownListener
+	//	handles clicks of Up/Down buttons.  Moves Kid's name up or down in the list by one slot
+	private View.OnClickListener mUpDownListener = new View.OnClickListener() {
+		public void onClick(View v) {
+			Log.d(TAG, "UpDownButton Clicked");
+			//determine if up or down button
+			int changeBy = -1; // change by moving up 1 == decrement index
+			Button clickedButton = (Button)(v);
+			if (clickedButton.getText().charAt(0) == 'v') {
+				//	move down 1 ==> increment index
+				changeBy = 1;
+			}
+
+			//get current position in table
+			TableRow clickedRow = (TableRow)v.getParent();
+			int curRow = mKidsTable.indexOfChild(clickedRow);
+			int newRow = curRow + changeBy;
+
+			//check if move is valid
+			if ((newRow >= 0) && (newRow < mPresenters.size())) {
+				//move table row as requested
+				mKidsTable.removeViewAt(curRow);
+				mKidsTable.addView(clickedRow, newRow);
+
+				//update array
+				Kid movedKid = mPresenters.get(curRow);
+				mPresenters.remove(curRow);
+				mPresenters.add(newRow, movedKid);
+			}
+		}
+	};
 
 
 	private KidsDataSource mKidsData;
 
+
+	private ArrayList<Kid> mPresenters;
 	private TableLayout mKidsTable;
 	private EditText mNewNameTextBox;
 
@@ -59,11 +97,9 @@ public class LightningRoundActivity extends Activity{
 	}
 	
 	private void populateKidsTable(){
-		ArrayList<Kid> kids = mKidsData.getKids();
-
-		//ArrayList<Kid> kids = MainActivity.KidsData.getKids();
-		for (int i=0; i<kids.size(); i++){
-			String name = kids.get(i).getName();
+		mPresenters = mKidsData.getKids();
+		for (int i=0; i<mPresenters.size(); i++){
+			String name = mPresenters.get(i).getName();
 			addKidToTable(i, name);
 		}
 	}
@@ -81,7 +117,7 @@ public class LightningRoundActivity extends Activity{
 		}
 		RectShape rectangle = new RectShape();
 		ShapeDrawable background = new ShapeDrawable(rectangle);
-		background.setPadding(4,2,16,2);
+		background.setPadding(4, 2, 16, 2);
 		Paint painter = background.getPaint();
 		painter.setColor(Color.argb(100,100,0,0));
 		//nextRow.setBackground(background); --- annot use unless restrict to higher API levels
@@ -91,19 +127,31 @@ public class LightningRoundActivity extends Activity{
 		//show Kid name in text view in new row
 		TextView nextText = new TextView(this);
 		nextText.setText(name);
-		nextText.setPadding(2,2,16,2);
+		nextText.setPadding(2, 2, 16, 2);
 
 		//provide checkbox to indicate has already presented
 		CheckBox nextCheckBox = new CheckBox(this);
-		nextCheckBox.setPadding(2,2,2,2);
+		nextCheckBox.setPadding(2, 2, 2, 2);
 		nextCheckBox.setOnClickListener(this.mCheckBoxListener);
 
-		//setup row with checkbox, name
+		//add up/down buttons
+		Button nextUpButton = new Button(this);
+		nextUpButton.setText("^");
+		nextUpButton.setOnClickListener(this.mUpDownListener);
+		Button nextDownButton = new Button(this);
+		nextDownButton.setText("v");
+		nextDownButton.setOnClickListener(this.mUpDownListener);
+
+		//setup row with checkbox, name, up/down buttons
+		nextRow.addView(nextUpButton);
+		nextRow.addView(nextDownButton);
 		nextRow.addView(nextCheckBox);
 		nextRow.addView(nextText);
 		
 		mKidsTable.addView(nextRow, i);
 	}
+
+
 
 	private void onEditListener(View view){
 
@@ -129,8 +177,15 @@ public class LightningRoundActivity extends Activity{
 				return;
 			}
 			
-			//check name is not already in database
-			Kid found = mKidsData.getKid(newName);
+			//check name is not already in presentation list
+			Kid found = null;
+			for (int i=0; i<mPresenters.size(); i++){
+				if (mPresenters.get(i).getName().equalsIgnoreCase(newName)){
+					found = mPresenters.get(i);
+					break;
+				}
+			}
+
 			if (found != null){
 				showMessage("This Kid is already in the Lightning Round");
 				//clear the edit box
@@ -142,7 +197,10 @@ public class LightningRoundActivity extends Activity{
 			Kid newKid = new Kid(newName);
 			mKidsData.addKid(newKid);
 
-			//add kid to the table
+			//add kid to the presenters list
+			mPresenters.add(newKid);
+
+			//display kid as new row in table
 			appendKidToTable(newName);
 			
 			//clear the edit box
