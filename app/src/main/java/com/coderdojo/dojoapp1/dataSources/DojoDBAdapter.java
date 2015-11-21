@@ -174,10 +174,15 @@ public class DojoDBAdapter {
         boolean bFound = false;
         Cursor mCursor =
 
-                mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                                KEY_NAME, KEY_POSI}, KEY_NAME + "=" + sName, null,
+                mDb.query(true, DATABASE_TABLE,
+                        new String[] {
+                                KEY_ROWID,
+                                KEY_NAME,
+                                KEY_POSI},
+                        KEY_NAME + "=?" ,
+                        new String[] {sName},
                         null, null, null, null);
-        if (mCursor != null) {
+        if (mCursor.getCount() > 0) {
             bFound = true;
         }
         return bFound;

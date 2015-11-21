@@ -30,7 +30,7 @@ public class LeaderBoardDBActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
- 		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_leader_board);
 
@@ -152,7 +152,7 @@ public class LeaderBoardDBActivity extends Activity {
 			//add the kid to the database
 			//Kid newKid = new Kid(newName);
 			//mKidsData.addKid(newKid);
-			mDbHelper = new DojoDBAdapter(this);
+			//mDbHelper = new DojoDBAdapter(this);
 			mDbHelper.createParticipant(newName, mParticipantNumber);
 			mParticipantNumber++;
 
