@@ -30,7 +30,7 @@ public class LightningRoundActivity extends Activity{
 			//mark the row grey
 			CheckBox checkbox = (CheckBox)v;
 			TableRow clickedRow = (TableRow)v.getParent();
-			TextView nameText = (TextView)clickedRow.getChildAt(1); //name
+			TextView nameText = (TextView)clickedRow.getChildAt(3); //name
 			if (checkbox.isChecked()) {
 				nameText.setPaintFlags(nameText.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 			}
