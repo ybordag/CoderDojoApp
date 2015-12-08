@@ -99,7 +99,7 @@ public class MainActivity extends Activity {
         Log.d(TAG, "onClickLeaderBoard entered");
 
         //show LeaderBoard
-        Intent intent = new Intent(this, LeaderBoardActivity.class);
+        Intent intent = new Intent(this, LeaderBoardDBActivity.class);
 
         Bundle infoBundle = new Bundle();
         infoBundle.putString("Kids", this.mKidsData.toString());
