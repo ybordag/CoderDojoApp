@@ -23,8 +23,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal" >
- 
+        android:orientation="horizontal"
+        android:focusableInTouchMode="true">
+
 	    <EditText
 	        android:id="@+id/lightningRoundAddNameText"
 	        android:layout_width="wrap_content"
@@ -36,18 +37,19 @@
             android:inputType = "textPersonName"
             android:maxLines="1"
             android:singleLine="true">
-	
+
 	        <requestFocus />
 	    </EditText>
-	
-	    
+
+
 	    <Button
 	        android:id="@+id/lightningRoundAddButton"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginRight="20dp"
 	        android:onClick="onClickAdd"
-	        android:text="@string/lightningBoardAddButtonTitle" />
+	        android:text="@string/lightningBoardAddButtonTitle"
+            android:nestedScrollingEnabled="false" />
 
     </LinearLayout>
 

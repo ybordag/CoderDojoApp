@@ -5,22 +5,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <Button android:layout_height="wrap_content" 
-		android:layout_width="wrap_content" 
-		android:text="@string/mainLeaderBoardButton" 
-		android:onClick="onClickLeaderBoard" 
-		android:layout_marginTop="102dp" 
-		android:layout_centerHorizontal="true" 
-		android:layout_alignParentTop="true" 
+
+    <Button android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/mainLeaderBoardButton"
+		android:onClick="onClickLeaderBoard"
+		android:layout_marginTop="102dp"
+		android:layout_centerHorizontal="true"
+		android:layout_alignParentTop="true"
 		android:id="@+id/mainLeaderBoardButton"/>
 
-	<Button android:layout_height="wrap_content" 
-		android:layout_width="wrap_content" 
-		android:text="@string/mainLightningRoundButton" 
-		android:onClick="onClickLightningRound" 
-		android:layout_marginTop="34dp" 
-		android:layout_centerHorizontal="true" 
-		android:id="@+id/mainLightningRoundButton" 
+	<Button android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/mainLightningRoundButton"
+		android:onClick="onClickLightningRound"
+		android:layout_marginTop="34dp"
+		android:layout_centerHorizontal="true"
+		android:id="@+id/mainLightningRoundButton"
 		android:layout_below="@+id/mainLeaderBoardButton"/>
-		
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="TriValley CoderDojo Lightning Talk Sign Up"
+		android:id="@+id/textView"
+		android:layout_alignParentTop="true"
+		android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
