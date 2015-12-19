@@ -4,6 +4,8 @@ package com.coderdojo.dojoapp1;
 public class Kid {
 	
 	private String _name;
+
+	private Boolean _is_checked;
 	
 	public Kid(String name){
 		_name = name;

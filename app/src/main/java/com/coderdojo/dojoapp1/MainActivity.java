@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.coderdojo.dojoapp1.dataSources.KidsDataSource;
 
@@ -17,8 +18,12 @@ public class MainActivity extends Activity {
 
     private static KidsDataSource mKidsData;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -31,6 +36,8 @@ public class MainActivity extends Activity {
         }
 
         ArrayList<Kid> kids  = mKidsData.getKids();
+
+
 
     }
 
@@ -99,7 +106,7 @@ public class MainActivity extends Activity {
         Log.d(TAG, "onClickLeaderBoard entered");
 
         //show LeaderBoard
-        Intent intent = new Intent(this, LeaderBoardActivity.class);
+        Intent intent = new Intent(this, LeaderBoardDBActivity.class);
 
         Bundle infoBundle = new Bundle();
         infoBundle.putString("Kids", this.mKidsData.toString());
