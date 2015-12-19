@@ -4,6 +4,21 @@
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
 
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_above="@+id/lightningRoundAddNameLayout"
+        android:layout_marginTop="53dp" >
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/horizontalScrollView"
+        android:layout_below="@+id/scrollView"
+        android:layout_alignRight="@+id/lightningRoundTable"
+        android:layout_alignEnd="@+id/lightningRoundTable" >
+
     <TableLayout
         android:id="@+id/lightningRoundTable"
         android:layout_width="wrap_content"
@@ -14,17 +29,18 @@
         android:layout_marginTop="20dp">
 
     </TableLayout>
+    </HorizontalScrollView>
+    </ScrollView>
+
 
     <LinearLayout
         android:id="@+id/lightningRoundAddNameLayout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/lightningRoundTable"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
 
 	    <EditText
 	        android:id="@+id/lightningRoundAddNameText"
@@ -52,5 +68,7 @@
             android:nestedScrollingEnabled="false" />
 
     </LinearLayout>
+
+
 
 </RelativeLayout>

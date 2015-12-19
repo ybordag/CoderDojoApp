@@ -22,11 +22,8 @@ import com.coderdojo.dojoapp1.dataSources.KidsDataSource;
 public class LightningRoundActivity extends Activity{
 	private final String TAG = "LightningRoundActivity";
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/master
 	//****************************************************************************************
 	// mCheckBoxListener
 	//	Handles checkbox clicks.  Marks the Kid as having completed his talk
@@ -35,14 +32,10 @@ public class LightningRoundActivity extends Activity{
 			//mark the row grey
 			CheckBox checkbox = (CheckBox)v;
 			TableRow clickedRow = (TableRow)v.getParent();
-<<<<<<< HEAD
 			int curRow = mKidsTable.indexOfChild(clickedRow);
 			String name = mPresenters.get(curRow).getName();
 			TextView nameText = (TextView)clickedRow.getChildAt(1); //name
 
-=======
-			TextView nameText = (TextView)clickedRow.getChildAt(3); //name
->>>>>>> origin/master
 			if (checkbox.isChecked()) {
 
 				mKidsTable.removeViewAt(curRow);
@@ -86,10 +79,7 @@ public class LightningRoundActivity extends Activity{
 			//determine if up or down button
 			int changeBy = -1; // change by moving up 1 == decrement index
 			Button clickedButton = (Button)(v);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 			if (clickedButton.getText().charAt(0) == 'v') {
 				//	move down 1 ==> increment index
 				changeBy = 1;
@@ -106,18 +96,12 @@ public class LightningRoundActivity extends Activity{
 				mKidsTable.removeViewAt(curRow);
 				mKidsTable.addView(clickedRow, newRow);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 				//update array
 				Kid movedKid = mPresenters.get(curRow);
 				mPresenters.remove(curRow);
 				mPresenters.add(newRow, movedKid);
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
 			}
 		}
 	};
@@ -125,13 +109,8 @@ public class LightningRoundActivity extends Activity{
 
 	private KidsDataSource mKidsData;
 
-<<<<<<< HEAD
 	private ArrayList<Kid> mPresenters;
 
-=======
-
-	private ArrayList<Kid> mPresenters;
->>>>>>> origin/master
 	private TableLayout mKidsTable;
 	private EditText mNewNameTextBox;
 
@@ -190,15 +169,10 @@ public class LightningRoundActivity extends Activity{
 		//add up/down buttons
 		Button nextUpButton = new Button(this);
 		nextUpButton.setText("^");
-<<<<<<< HEAD
 		nextUpButton.setEms(4);
 		nextUpButton.setOnClickListener(this.mUpDownListener);
 		Button nextDownButton = new Button(this);
 		nextDownButton.setEms(4);
-=======
-		nextUpButton.setOnClickListener(this.mUpDownListener);
-		Button nextDownButton = new Button(this);
->>>>>>> origin/master
 		nextDownButton.setText("v");
 		nextDownButton.setOnClickListener(this.mUpDownListener);
 
