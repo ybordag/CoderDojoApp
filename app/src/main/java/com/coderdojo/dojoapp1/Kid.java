@@ -5,7 +5,7 @@ public class Kid {
 	
 	private String _name;
 
-	private Boolean _is_checked;
+	public Boolean _is_checked;
 	
 	public Kid(String name){
 		_name = name;

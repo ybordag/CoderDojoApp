@@ -22,6 +22,8 @@ import com.coderdojo.dojoapp1.dataSources.KidsDataSource;
 public class LightningRoundActivity extends Activity{
 	private final String TAG = "LightningRoundActivity";
 
+	private Boolean reconKidCheck;
+
 
 
 	//****************************************************************************************
@@ -31,13 +33,35 @@ public class LightningRoundActivity extends Activity{
 		public void onClick(View v) {
 			//mark the row grey
 			CheckBox checkbox = (CheckBox)v;
+
 			TableRow clickedRow = (TableRow)v.getParent();
 			int curRow = mKidsTable.indexOfChild(clickedRow);
 			String name = mPresenters.get(curRow).getName();
-			TextView nameText = (TextView)clickedRow.getChildAt(1); //name
+			TextView nameText = (TextView)clickedRow.getChildAt(1); //na
+
+			Kid currKid = mKidsData.getKid(name);
+
+			currKid._is_checked = true;
+
+
+			try {
+				mKidsData.save();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
 
 			if (checkbox.isChecked()) {
+				if (currKid._is_checked) {
+					currKid._is_checked = false;
 
+					try {
+						mKidsData.save();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+
+				}
 				mKidsTable.removeViewAt(curRow);
 				mPresenters.remove(curRow);
 				try {
@@ -46,7 +70,7 @@ public class LightningRoundActivity extends Activity{
 					e.printStackTrace();
 				}
 
-			}
+
 			Kid replacedKid = new Kid(name);
 			try {
 
@@ -62,6 +86,15 @@ public class LightningRoundActivity extends Activity{
 				e.printStackTrace();
 			}
 
+
+				TableRow newCheckbox = (TableRow) mKidsTable.getChildAt(mPresenters.size() - 1);
+
+				checkbox = (CheckBox)newCheckbox.getChildAt(2);
+
+
+
+				checkbox.setChecked(true);
+			}
 
 
 
@@ -121,24 +154,32 @@ public class LightningRoundActivity extends Activity{
 
 		//get data for table
 		mKidsData = ApplicationFactory.getInstance().getKidsDataSource();
-
 		//populate view
 		mNewNameTextBox = (EditText)findViewById(R.id.lightningRoundAddNameText);
 		mKidsTable = (TableLayout)findViewById(R.id.lightningRoundTable);
 		populateKidsTable();
+
+
 	}
 	
 	private void populateKidsTable(){
 		mPresenters = mKidsData.getKids();
 		for (int i=0; i<mPresenters.size(); i++){
+
+
 			String name = mPresenters.get(i).getName();
-			addKidToTable(i, name);
+			Kid reconKid = mKidsData.getKid(name);
+			reconKidCheck = reconKid._is_checked;
+			addKidToTable(i, name, reconKidCheck);
 		}
+
+
 	}
 
-	private void addKidToTable(int i, String name) {
+	private void addKidToTable(int i, String name, Boolean check) {
 		//add row to table
 		TableRow nextRow = new TableRow(this);
+
 		TableRow.LayoutParams rowLayout = new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
 		nextRow.setLayoutParams(rowLayout);
 		if (i%2==0) {
@@ -152,7 +193,7 @@ public class LightningRoundActivity extends Activity{
 		background.setPadding(4, 2, 16, 2);
 		Paint painter = background.getPaint();
 		painter.setColor(Color.argb(100,100,0,0));
-		//nextRow.setBackground(background); --- annot use unless restrict to higher API levels
+		//nextRow.setBackground(background); --- cannot use unless restrict to higher API levels
 
 
 
@@ -165,6 +206,9 @@ public class LightningRoundActivity extends Activity{
 		CheckBox nextCheckBox = new CheckBox(this);
 		nextCheckBox.setPadding(2, 2, 2, 2);
 		nextCheckBox.setOnClickListener(this.mCheckBoxListener);
+		if (check == true) {
+			nextCheckBox.setChecked(true);
+		}
 
 		//add up/down buttons
 		Button nextUpButton = new Button(this);
@@ -193,7 +237,7 @@ public class LightningRoundActivity extends Activity{
 
 	private void appendKidToTable(String name) {
 		int count = mKidsTable.getChildCount();
-		addKidToTable(count,name);
+		addKidToTable(count,name, false);
 	}
 	
 	
