@@ -17,8 +17,7 @@
             </intent-filter>
         </activity>
 		<activity android:name=".LightningRoundActivity" android:label="@string/title_activity_lightning_round"> </activity>
-		<activity android:name=".LeaderBoardActivity" android:label="@string/title_activity_leader_board"> </activity>
-		<activity android:name=".LeaderBoardDBActivity" android:label="@string/title_activity_leader_board"> </activity>
+
     </application>
 
 </manifest>

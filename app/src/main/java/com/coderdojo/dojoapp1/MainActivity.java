@@ -102,19 +102,7 @@ public class MainActivity extends Activity {
 
 
 
-    public void onClickLeaderBoard(View view){
-        Log.d(TAG, "onClickLeaderBoard entered");
 
-        //show LeaderBoard
-        Intent intent = new Intent(this, LeaderBoardDBActivity.class);
-
-        Bundle infoBundle = new Bundle();
-        infoBundle.putString("Kids", this.mKidsData.toString());
-        intent.putExtras(infoBundle);
-
-        startActivity(intent);
-
-    }
 
     public void onClickLightningRound(View view){
         Log.d(TAG, "onClickLightningRound entered");

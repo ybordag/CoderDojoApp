@@ -104,6 +104,25 @@ public class LightningRoundActivity extends Activity{
 	};
 
 	//****************************************************************************************
+	// Clear name from check box
+    private View.OnClickListener mClearAllListener = new View.OnClickListener() {
+        public void onClick(View v) {
+            Log.d(TAG, "ClearButton Clicked");
+            TableRow clickedRow = (TableRow)v.getParent();
+			int curRow = mKidsTable.indexOfChild(clickedRow);
+			Kid kid = mPresenters.get(curRow);
+			mPresenters.remove(curRow);
+			mKidsTable.removeViewAt(curRow);
+			try{
+				mKidsData.removeKid(kid.getName());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }
+
+    } ;
+
+
 	// mUpDownListener
 	//	handles clicks of Up/Down buttons.  Moves Kid's name up or down in the list by one slot
 	private View.OnClickListener mUpDownListener = new View.OnClickListener() {
@@ -135,9 +154,13 @@ public class LightningRoundActivity extends Activity{
 				mPresenters.remove(curRow);
 				mPresenters.add(newRow, movedKid);
 
+
+
 			}
 		}
 	};
+
+
 
 
 	private KidsDataSource mKidsData;
@@ -219,14 +242,22 @@ public class LightningRoundActivity extends Activity{
 		nextDownButton.setEms(4);
 		nextDownButton.setText("v");
 		nextDownButton.setOnClickListener(this.mUpDownListener);
+        Button nextRemoveButton = new Button(this);
+        nextRemoveButton.setText("Clear");
+        nextRemoveButton.setEms(4);
+        nextRemoveButton.setOnClickListener(this.mClearAllListener);
 
 		//setup row with checkbox, name, up/down buttons
 		nextRow.addView(nextUpButton);
 		nextRow.addView(nextDownButton);
 		nextRow.addView(nextCheckBox);
 		nextRow.addView(nextText);
+        nextRow.addView(nextRemoveButton);
 		
 		mKidsTable.addView(nextRow, i);
+
+
+
 	}
 
 
