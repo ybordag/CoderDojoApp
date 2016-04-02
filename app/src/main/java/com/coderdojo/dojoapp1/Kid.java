@@ -5,10 +5,11 @@ public class Kid {
 	
 	private String _name;
 
-	public Boolean _is_checked;
+	private Boolean _is_checked;
 	
 	public Kid(String name){
 		_name = name;
+		_is_checked = false;
 	}
 	
 	public void setName(String name){
@@ -22,6 +23,14 @@ public class Kid {
 	public String toString(){
 		String output = _name;
 		return output;
+	}
+
+	public boolean isChecked(){
+		return _is_checked;
+	}
+
+	public void setChecked(boolean isChecked){
+		_is_checked = isChecked;
 	}
 
 	public void fromString(String input){

@@ -8,59 +8,72 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView"
-        android:layout_above="@+id/lightningRoundAddNameLayout"
-        android:layout_marginTop="53dp"
-        android:layout_centerInParent="true">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/scrollView">
 
-        <TableLayout
-            android:id="@+id/lightningRoundTable"
+        <LinearLayout
+            android:id="@+id/scrollViewContents"
             android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp">
-
-        </TableLayout>
-    </ScrollView>
+            android:layout_margin="25dp">
 
 
-    <LinearLayout
-        android:id="@+id/lightningRoundAddNameLayout"
-        android:layout_width="wrap_content"
-        android:orientation="horizontal"
-        android:focusableInTouchMode="true"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+            <TableLayout
+                android:id="@+id/lightningRoundTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp">
 
-	    <EditText
-	        android:id="@+id/lightningRoundAddNameText"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginRight="28dp"
-            android:hint="@string/lightningRoundNameTextHint"
-            android:minWidth="100dp"
-            android:editable="true"
-            android:inputType = "textPersonName"
-            android:maxLines="1"
-            android:singleLine="true">
+            </TableLayout>
 
-	        <requestFocus />
-	    </EditText>
+            <LinearLayout
+                android:id="@+id/lightningRoundAddNameLayout"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:focusableInTouchMode="true"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="25dp">
+
+                <EditText
+                        android:id="@+id/lightningRoundAddNameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="28dp"
+                        android:hint="@string/lightningRoundNameTextHint"
+                        android:minWidth="100dp"
+                        android:editable="true"
+                        android:inputType = "textPersonName"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:layout_gravity="bottom">
+
+                        <requestFocus />
+                    </EditText>
 
 
-	    <Button
-	        android:id="@+id/lightningRoundAddButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_marginRight="20dp"
-	        android:onClick="onClickAdd"
-	        android:text="@string/lightningBoardAddButtonTitle"
-            android:nestedScrollingEnabled="false" />
+                    <Button
+                        android:id="@+id/lightningRoundAddButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:onClick="onClickAdd"
+                        android:text="@string/lightningBoardAddButtonTitle"
+                        android:nestedScrollingEnabled="false"
+                        android:layout_gravity="bottom" />
 
-    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        </ScrollView>
 
 
 

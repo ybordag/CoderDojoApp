@@ -11,14 +11,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.coderdojo.dojoapp1.dataSources.KidsDataSource;
-
 public class MainActivity extends Activity {
     private final String TAG = "MainActivity";
 
-    private static KidsDataSource mKidsData;
-
-
+    private static ArrayList<Kid> mKidsData;
 
 
     @Override
@@ -29,16 +25,11 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         try{
-            mKidsData = ApplicationFactory.getInstance().getKidsDataSource();
+            mKidsData = new ArrayList<Kid>();
         }
         catch(Exception ex){
             showMessage("Unable to open Kids Data:  " + ex.getMessage());
         }
-
-        ArrayList<Kid> kids  = mKidsData.getKids();
-
-
-
     }
 
     protected void onPause(){
@@ -48,7 +39,7 @@ public class MainActivity extends Activity {
 
     protected void onClose(){
         try {
-            mKidsData.close();
+            //mKidsData.close();
         }
         catch(Exception ex){
             ApplicationUtilities.showMessage(this,"Error in closing" + ex.getMessage());
@@ -58,7 +49,7 @@ public class MainActivity extends Activity {
     public void onClickLoad(View view){
         Log.d(TAG, "onClickLoad");
         try{
-            mKidsData.load();
+           // mKidsData.load();
         }
         catch(Exception ex){
             showMessage("Unable to load:  " + ex.getMessage());
@@ -69,7 +60,7 @@ public class MainActivity extends Activity {
     public void onClickSave(View view){
         Log.d(TAG, "onClickSave");
         try{
-            mKidsData.save();
+           // mKidsData.save();
         }
         catch(Exception ex){
             showMessage("Unable to save:  " + ex.getMessage());
@@ -112,7 +103,7 @@ public class MainActivity extends Activity {
 
     }
 
-    public static KidsDataSource getKidsData(){
+    public static ArrayList<Kid> getKidsData(){
         return mKidsData;
     }
 

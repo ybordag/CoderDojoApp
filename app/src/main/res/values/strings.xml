@@ -3,7 +3,7 @@
     <string name="app_name">TriValley Coder Dojo</string>
 	<string name="hello_world">Hello world!</string>
 	<string name="mainLeaderBoardButton">Leader Board</string>
-	<string name="mainLightningRoundButton">Lightning Round</string>
+	<string name="mainLightningRoundButton">Lightning Talk Signup</string>
 	<string name="title_activity_lightning_round">Lightning Round</string>
 	<string name="title_activity_leader_board">Leader Board</string>
 	<string name="lightningBoardAddButtonTitle">Add</string>
