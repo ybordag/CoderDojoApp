@@ -196,8 +196,8 @@ public class LightningRoundActivity extends Activity{
 		nextDownButton.setText("v");
 		nextDownButton.setOnClickListener(this.mUpDownListener);
         Button nextRemoveButton = new Button(this);
-        nextRemoveButton.setText("Clear");
-        nextRemoveButton.setEms(4);
+        nextRemoveButton.setText("X");
+        //nextRemoveButton.setEms(4);
         nextRemoveButton.setOnClickListener(this.mRemovePresenterListener);
 
 		//setup row with checkbox, name, up/down buttons

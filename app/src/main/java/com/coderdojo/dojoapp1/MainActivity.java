@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TableRow;
 
 public class MainActivity extends Activity {
     private final String TAG = "MainActivity";
@@ -100,6 +101,8 @@ public class MainActivity extends Activity {
 
         Intent intent = new Intent(this, LightningRoundActivity.class);
         startActivity(intent);
+
+
 
     }
 
